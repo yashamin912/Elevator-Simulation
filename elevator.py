@@ -1,24 +1,33 @@
 import multiprocessing
 import time
+
+
 class Elevator:
-    def __init__(self, floor):
-        self.floor = floor
+    def __init__(self, button,):
+        self.button = button
+        self.opener = 'o'
 
-    def open_door(self):
-        return "The door has opened"
+    def open_close(self, slider):
 
-    def close_door(self):
-        return "The door has closed"
+        if slider == self.opener:
+            if slider == 'o':
+                return f"The Door is already open."
+            elif slider == 'c':
+                return f"The Door is already closed."
+        elif slider != self.opener:
+            self.opener = slider
+            if slider == 'c':
+                return "Doors are closing."
+            elif slider == 'o':
+                return "Doors are opening."
+
 
     def floor_selection(self, new_floor):
-        place_holder = self.floor
-        self.floor = new_floor
-
-        print("The door are closing")
+        place_holder = self.button
+        self.button = new_floor
+        print("Door are closing.")
 
         return f"You are on floor {place_holder} and going to {new_floor}.\nThe door has opened."
-
-
 
     def fire_alarm(self):
         return "DING DING DING"
@@ -37,30 +46,33 @@ def user_inputs(floor):
     if floor not in floor_list:
         while floor not in floor_list:
             floor = input("Please type as integer and make sure it's in range. (Floors: 1-7) ")
+
+
+    print(f"Here is the button list: {button_list}\nfa = fire alarm \no = open door \nc = close door")
+    button = input("Welcome to our elevator! Door has opened. Awaiting input... (type 's' to end.) ")
     Person = Elevator(floor)
-    print(f"Here is the button list: {button_list}")
-    button = input("Welcome to our elevator! Waiting for input... (type 's' to end.) ")
+
     while button != "s":
         while button not in button_list:
             button = input("Please put in a actual input. Waiting for input... ")
-
 
         if button in floor_list:
             if button == floor:
                 print(f"\nYou're already on that floor")
             else:
                 print(f"\n{Person.floor_selection(button)}")
-                floor = Person.floor
+                floor = Person.button
 
         elif button in Operation_list:
             if button == 'fa':
                 print(f"\n{Person.fire_alarm()}")
-            elif button == 'c':
-                print(f"\n{Person.close_door()}")
-            elif button == 'o':
-                print(f"\n{Person.open_door()}")
-        button = input("Anything else? Waiting for input... (type 's' to end.) ")
+            elif button in 'oc':
+                print(f"\n{Person.open_close(button)}")
+        button = input("Anything else? Awaiting input... (type 's' to end.) ")
     print("Bye bye")
 
 
 user_inputs(current_floor)
+
+
+
