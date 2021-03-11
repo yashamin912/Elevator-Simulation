@@ -11,9 +11,9 @@ class Elevator:
 
         if slider == self.opener:
             if slider == 'o':
-                return f"The Door is already open."
+                return f"The Doors are already open."
             elif slider == 'c':
-                return f"The Door is already closed."
+                return f"The Doors are already closed."
         elif slider != self.opener:
             self.opener = slider
             if slider == 'c':
@@ -25,9 +25,10 @@ class Elevator:
     def floor_selection(self, new_floor):
         place_holder = self.button
         self.button = new_floor
-        print("Door are closing.")
-
-        return f"You are on floor {place_holder} and going to {new_floor}.\nThe door has opened."
+        if self.opener == 'o':
+            print("\nDoors are closing.")
+        self.opener = 'o'
+        return f"You are on floor {place_holder} and going to {new_floor}.\nThe doors have opened."
 
     def fire_alarm(self):
         return "DING DING DING"
@@ -49,7 +50,7 @@ def user_inputs(floor):
 
 
     print(f"Here is the button list: {button_list}\nfa = fire alarm \no = open door \nc = close door")
-    button = input("Welcome to our elevator! Door has opened. Awaiting input... (type 's' to end.) ")
+    button = input("Welcome to our elevator! The Doors have opened. Awaiting input... (type 's' to end.) ")
     Person = Elevator(floor)
 
     while button != "s":
@@ -73,6 +74,7 @@ def user_inputs(floor):
 
 
 user_inputs(current_floor)
+
 
 
 
