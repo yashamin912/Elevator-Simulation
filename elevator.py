@@ -49,7 +49,7 @@ def user_inputs(floor):
             floor = input("Please type as integer and make sure it's in range. (Floors: 1-7) ")
 
 
-    print(f"Here is the button list: {button_list}\nfa = fire alarm \no = open door \nc = close door")
+    print(f"\nHere is the button list: {button_list}\nfa = fire alarm \no = open door \nc = close door")
     button = input("Welcome to our elevator! The Doors have opened. Awaiting input... (type 's' to end.) ")
     Person = Elevator(floor)
 
